@@ -1,53 +1,17 @@
 {
-  "version": "0.0.0",
-  "name": "{{name_of_lib}}",
-  "description": "{{desc_of_lib}}",
+  "version": "1.0.0",
+  "name": "solid-chartjs",
+  "description": "",
   "license": "MIT",
-  "author": "{{me}}",
+  "author": "Vyacheslav <slava021323@gmail.com>",
   "contributors": [],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/{{me}}/{{name_of_lib}}.git"
-  },
-  "homepage": "https://github.com/{{me}}/{{name_of_lib}}#readme",
-  "bugs": {
-    "url": "https://github.com/{{me}}/{{name_of_lib}}/issues"
-  },
-  "files": [
-    "dist"
-  ],
-  "private": false,
-  "sideEffects": false,
   "type": "module",
   "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "browser": {},
-  "exports": {
-    "solid": {
-      "development": "./dist/dev.jsx",
-      "import": "./dist/index.jsx"
-    },
-    "development": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/dev.js"
-      },
-      "require": "./dist/dev.cjs"
-    },
-    "import": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    },
-    "require": "./dist/index.cjs"
-  },
   "typesVersions": {},
   "scripts": {
     "dev": "vite serve dev",
     "build": "tsup",
-    "test": "concurrently pnpm:test:*",
-    "test:client": "vitest",
-    "test:ssr": "pnpm run test:client --mode ssr",
     "prepublishOnly": "pnpm build",
     "format": "prettier --ignore-path .gitignore -w \"src/**/*.{js,ts,json,css,tsx,jsx}\" \"dev/**/*.{js,ts,json,css,tsx,jsx}\"",
     "update-deps": "pnpm up -Li",
@@ -73,5 +37,8 @@
   "keywords": [
     "solid"
   ],
-  "packageManager": "pnpm@7.22.0"
+  "packageManager": "pnpm@7.22.0",
+  "dependencies": {
+    "chart.js": "^4.3.0"
+  }
 }
