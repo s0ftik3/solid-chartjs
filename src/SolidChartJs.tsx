@@ -6,13 +6,11 @@ import Chart, {
 } from 'chart.js/auto'
 import { createEffect, createSignal, mergeProps, on, onCleanup } from 'solid-js'
 import { Canvas } from './components/UI/Canvas'
-import { generateRandomString } from './utils/random'
 import { unwrap } from 'solid-js/store'
 
 export interface SolidChartJsProps {
-    id?: string
-    height?: string | number
-    width?: string | number
+    width?: number | undefined
+    height?: number | undefined
     type: keyof ChartTypeRegistry
     data: ChartData
     options?: ChartOptions
@@ -24,23 +22,28 @@ export default function SolidChartJs(props: SolidChartJsProps) {
 
     const merged = mergeProps(
         {
-            id: `chart-${generateRandomString()}`,
-            height: 'auto',
-            width: '100%',
+            width: 512,
+            height: 512,
             type: 'line',
         },
         props
     )
 
-    const { id, height, width, ...chartConfig } = unwrap(merged)
     const [chartRef, setChartRef] = createSignal<HTMLCanvasElement>()
 
     createEffect(() => {
+        if (chart) return
+
         const canvasElement = chartRef()
         if (!canvasElement) return
 
         const ctx = canvasElement.getContext('2d') as ChartItem
-        chart = new Chart(ctx, chartConfig)
+        const chartConfig = unwrap(merged)
+        chart = new Chart(ctx, {
+            type: chartConfig.type,
+            data: chartConfig.data,
+            options: chartConfig.options,
+        })
     })
 
     createEffect(
@@ -56,21 +59,30 @@ export default function SolidChartJs(props: SolidChartJsProps) {
         )
     )
 
+    createEffect(
+        on(
+            [() => merged.width, () => merged.height],
+            () => {
+                chart.resize(merged.width, merged.height)
+            },
+            {
+                defer: true,
+            }
+        )
+    )
+
     onCleanup(() => {
-        if (chart) {
-            chart.destroy()
-        }
+        chart?.destroy()
     })
 
     return (
         <>
             <Canvas
-                id={id}
                 onMount={(canvas: HTMLCanvasElement) =>
                     setChartRef(() => canvas)
                 }
-                height={height}
-                width={width}
+                height={merged.height}
+                width={merged.width}
             />
         </>
     )

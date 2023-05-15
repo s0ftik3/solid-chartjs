@@ -32,6 +32,15 @@ body {
     margin: 0 8px;
 }
 
+.inputGroup {
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.inputGroup input {
+    margin: 0 8px;
+}
+
 .header {
     background-color: #ffffff;
     min-height: 100vh;
@@ -63,4 +72,22 @@ button {
 button:hover {
     background: rgba(40, 44, 52, 0.1);
     border-color: #3080d0;
+}
+
+.inputField {
+    transition: background 0.25s, border-color 0.25s;
+    background: rgba(40, 44, 52, 0.05);
+    border: 1px solid transparent;
+    border-radius: 6px;
+    color: #3080d0;
+    font-size: 0.8rem;
+    padding: 8px 16px;
+    margin: 0 8px 8px 0;
+}
+
+.inputField:hover,
+.inputField:focus {
+    background: rgba(40, 44, 52, 0.1);
+    border-color: #3080d0;
+    outline: none;
 }

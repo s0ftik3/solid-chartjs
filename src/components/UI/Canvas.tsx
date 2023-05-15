@@ -1,23 +1,26 @@
-import { onMount } from 'solid-js'
+import { mergeProps } from 'solid-js'
 
 export interface CanvasProps {
-    id: string
     onMount: (canvas: HTMLCanvasElement) => void
     width?: string | number
     height?: string | number
 }
 
 export const Canvas = (props: CanvasProps) => {
-    onMount(() => {
-        const canvas = document.getElementById(props.id) as HTMLCanvasElement
-        props.onMount(canvas)
-    })
+    const merged = mergeProps(
+        {
+            onMount: () => {},
+            width: 512,
+            height: 512,
+        },
+        props
+    )
 
     return (
         <canvas
-            id={props.id}
-            width={props.width ?? 512}
-            height={props.height ?? 256}
+            ref={merged.onMount}
+            width={merged.width}
+            height={merged.height}
         />
     )
 }

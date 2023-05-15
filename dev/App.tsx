@@ -7,11 +7,16 @@ import {
 } from '../src/utils/random'
 import { createSignal } from 'solid-js'
 import { ChartData } from 'chart.js'
+import { createStore } from 'solid-js/store'
 
 const App: Component = () => {
     const [chartData, setChartData] = createSignal<ChartData>(
         generateRandomChartData()
     )
+    const [chartConfig, setChartConfig] = createStore({
+        width: 700,
+        height: 400,
+    })
 
     const onRandomizeClick = () => {
         setChartData((prev) => generateRandomChartData(prev.datasets.length))
@@ -36,12 +41,16 @@ const App: Component = () => {
         })
     }
 
+    const onDimensionsInput = (type: 'width' | 'height', event: any) => {
+        setChartConfig(type, () => event.target.value)
+    }
+
     return (
         <div class={styles.container}>
             <div class={styles.chart}>
                 <SolidChartJs
-                    height={400}
-                    width={700}
+                    width={chartConfig.width}
+                    height={chartConfig.height}
                     type={'line'}
                     data={chartData()}
                     options={{
@@ -54,6 +63,22 @@ const App: Component = () => {
                             },
                         },
                     }}
+                />
+            </div>
+            <div class={styles.inputGroup}>
+                <input
+                    class={styles.inputField}
+                    type="number"
+                    placeholder="Width"
+                    value={chartConfig.width}
+                    onInput={(event) => onDimensionsInput('width', event)}
+                />
+                <input
+                    class={styles.inputField}
+                    type="number"
+                    placeholder="Height"
+                    value={chartConfig.height}
+                    onInput={(event) => onDimensionsInput('height', event)}
                 />
             </div>
             <div class={styles.buttonGroup}>
