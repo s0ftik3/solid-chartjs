@@ -1,4 +1,9 @@
-import Chart, { ChartData, ChartItem, ChartOptions, Plugin } from 'chart.js/auto'
+import Chart, {
+    ChartData,
+    ChartItem,
+    ChartOptions,
+    Plugin,
+} from 'chart.js/auto'
 import { createEffect, mergeProps, on, onCleanup, onMount } from 'solid-js'
 import { unwrap } from 'solid-js/store'
 import { ChartJsProps } from './types'
@@ -63,9 +68,13 @@ export default function ChartJs(props: ChartJsProps) {
         on(
             () => merged.type,
             () => {
+                // save the chart's dimensions
                 const dimensions = [chart.width, chart.height]
+
                 chart.destroy()
                 init()
+
+                // restore the chart's dimensions before destroying
                 chart.resize(...dimensions)
             },
             {

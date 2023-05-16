@@ -1,7 +1,7 @@
 import styles from './App.module.css'
 import type { Component } from 'solid-js'
 import { Line } from '../src'
-import { generateRandomChartData, generateRandomDataset } from '../src/utils'
+import { generateRandomChartData, generateRandomDataset } from './utils'
 import { createSignal, For } from 'solid-js'
 import { ChartData, ChartTypeRegistry } from 'chart.js'
 import { createStore } from 'solid-js/store'
