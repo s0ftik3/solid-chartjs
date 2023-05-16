@@ -7,6 +7,10 @@
         {
             "name": "Source",
             "path": "./src"
+        },
+        {
+            "name": "Dev",
+            "path": "./dev"
         }
     ],
     "settings": {
