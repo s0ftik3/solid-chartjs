@@ -84,5 +84,5 @@ export interface ChartProps {
      * A ref to the Chart.js instance
      * @default null
      */
-    ref: Ref<HTMLCanvasElement | null>
+    ref?: Ref<HTMLCanvasElement | null>
 }
