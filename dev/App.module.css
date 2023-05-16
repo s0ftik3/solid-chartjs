@@ -91,3 +91,24 @@ button:hover {
     border-color: #3080d0;
     outline: none;
 }
+
+.selectField {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    transition: background 0.25s, border-color 0.25s;
+    background: rgba(40, 44, 52, 0.05);
+    border: 1px solid transparent;
+    border-radius: 6px;
+    color: #3080d0;
+    font-size: 0.8rem;
+    padding: 8px 16px;
+    margin: 0 8px 8px 0;
+}
+
+.selectField:hover,
+.selectField:focus {
+    background: rgba(40, 44, 52, 0.1);
+    border-color: #3080d0;
+    outline: none;
+}

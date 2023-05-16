@@ -2,8 +2,8 @@ import styles from './App.module.css'
 import type { Component } from 'solid-js'
 import { Line } from '../src'
 import { generateRandomChartData, generateRandomDataset } from '../src/utils'
-import { createSignal } from 'solid-js'
-import { ChartData } from 'chart.js'
+import { createSignal, For } from 'solid-js'
+import { ChartData, ChartTypeRegistry } from 'chart.js'
 import { createStore } from 'solid-js/store'
 
 const App: Component = () => {
@@ -14,6 +14,20 @@ const App: Component = () => {
         width: 700,
         height: 400,
     })
+
+    const chartTypes: (keyof ChartTypeRegistry)[] = [
+        'line',
+        'bar',
+        'doughnut',
+        'radar',
+        'polarArea',
+        'bubble',
+        'pie',
+        'scatter',
+    ]
+    const [chartType, setChartType] = createSignal<
+        keyof ChartTypeRegistry | undefined
+    >(chartTypes[0])
 
     const onRandomizeClick = () => {
         setChartData((prev) => generateRandomChartData(prev.datasets.length))
@@ -42,13 +56,18 @@ const App: Component = () => {
         setChartConfig(type, () => event.target.value)
     }
 
+    const onTypeSelect = (event: any) => {
+        setChartType(event.target.value as keyof ChartTypeRegistry)
+    }
+
     return (
         <div class={styles.container}>
             <div class={styles.chart}>
                 <Line
                     width={chartConfig.width}
                     height={chartConfig.height}
-                    fallback={<p>something here</p>}
+                    fallback={<p>Chart is not available</p>}
+                    type={chartType()}
                     data={chartData()}
                     options={{
                         responsive: true,
@@ -63,6 +82,22 @@ const App: Component = () => {
                 />
             </div>
             <div class={styles.inputGroup}>
+                <select
+                    class={styles.selectField}
+                    name="types"
+                    onChange={onTypeSelect}
+                >
+                    <For each={chartTypes}>
+                        {(type) => (
+                            <option
+                                value={type}
+                                selected={chartType() === type}
+                            >
+                                {type}
+                            </option>
+                        )}
+                    </For>
+                </select>
                 <input
                     class={styles.inputField}
                     type="number"

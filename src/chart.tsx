@@ -18,7 +18,7 @@ export default function ChartJs(props: ChartJsProps) {
         props
     )
 
-    onMount(() => {
+    const init = () => {
         const ctx = canvasRef?.getContext('2d') as ChartItem
         const config = unwrap(merged)
         chart = new Chart(ctx, {
@@ -26,6 +26,10 @@ export default function ChartJs(props: ChartJsProps) {
             data: config.data,
             options: config.options,
         })
+    }
+
+    onMount(() => {
+        init()
     })
 
     createEffect(
@@ -53,17 +57,25 @@ export default function ChartJs(props: ChartJsProps) {
         )
     )
 
+    createEffect(
+        on(
+            () => merged.type,
+            () => {
+                chart.destroy()
+                init()
+            },
+            {
+                defer: true,
+            }
+        )
+    )
+
     onCleanup(() => {
         chart?.destroy()
     })
 
     return (
-        <canvas
-            ref={canvasRef}
-            role="img"
-            height={merged.height}
-            width={merged.width}
-        >
+        <canvas ref={canvasRef} height={merged.height} width={merged.width}>
             {merged.fallback}
         </canvas>
     )
