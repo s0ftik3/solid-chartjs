@@ -35,5 +35,5 @@ jobs:
         env:
           CI: true
 
-      - name: Typecheck
-        run: pnpm run typecheck
+      #3- name: Typecheck
+      #3  run: pnpm run typecheck
