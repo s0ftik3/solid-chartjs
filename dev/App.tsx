@@ -3,12 +3,13 @@ import { Component, createSignal, onMount } from 'solid-js'
 import {
     Chart,
     Line,
-    LineController,
-    CategoryScale,
-    LinearScale,
-    BarElement,
-    PointElement,
-    LineElement,
+    Bar,
+    Radar,
+    Doughnut,
+    PolarArea,
+    Bubble,
+    Pie,
+    Scatter,
     Title,
     Tooltip,
     Legend,
@@ -22,15 +23,13 @@ const App: Component = () => {
     const options = {
         responsive: true,
         redraw: true,
-        height: 1000,
-        width: 600,
         plugins: {
             legend: {
                 position: 'top' as const,
             },
             title: {
                 display: true,
-                text: 'Chart.js Line Chart',
+                text: 'Chart.js & SolidJS',
             },
         },
     }
@@ -57,12 +56,6 @@ const App: Component = () => {
 
     onMount(() => {
         Chart.register(
-            LineController,
-            CategoryScale,
-            LinearScale,
-            BarElement,
-            PointElement,
-            LineElement,
             Title,
             Tooltip,
             Legend,
@@ -86,13 +79,14 @@ const App: Component = () => {
                 </a>
             </header>
 
-            <Line
-                ref={setRef}
-                type="line"
-                data={data}
-                options={options}
-                fallbackContent="Loading..."
-            />
+            <Line ref={setRef} data={data} options={options} fallbackContent="Loading..." />
+            <Bar ref={setRef} data={data} options={options} fallbackContent="Loading..." />
+            <Radar ref={setRef} data={data} options={options} fallbackContent="Loading..." />
+            <Doughnut ref={setRef} data={data} options={options} fallbackContent="Loading..." />
+            <PolarArea ref={setRef} data={data} options={options} fallbackContent="Loading..." />
+            <Pie ref={setRef} data={data} options={options} fallbackContent="Loading..." />
+            <Bubble ref={setRef} data={data} options={options} fallbackContent="Loading..." />
+            <Scatter ref={setRef} data={data} options={options} fallbackContent="Loading..." />
         </div>
     )
 }
