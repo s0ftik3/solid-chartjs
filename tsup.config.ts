@@ -2,7 +2,7 @@ import { defineConfig } from 'tsup-preset-solid'
 
 export default defineConfig(
   {
-    entry: 'src/index.tsx',
+    entry: 'src/index.ts',
     devEntry: true,
     // @ts-ignore
     dropConsole: true,

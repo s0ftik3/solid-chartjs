@@ -1,10 +1,7 @@
 import styles from './App.module.css'
 import type { Component } from 'solid-js'
-import { SolidChartJs } from '../src'
-import {
-    generateRandomChartData,
-    generateRandomDataset,
-} from '../src/utils/random'
+import { Line } from '../src'
+import { generateRandomChartData, generateRandomDataset } from '../src/utils'
 import { createSignal } from 'solid-js'
 import { ChartData } from 'chart.js'
 import { createStore } from 'solid-js/store'
@@ -48,10 +45,10 @@ const App: Component = () => {
     return (
         <div class={styles.container}>
             <div class={styles.chart}>
-                <SolidChartJs
+                <Line
                     width={chartConfig.width}
                     height={chartConfig.height}
-                    type={'line'}
+                    fallback={<p>something here</p>}
                     data={chartData()}
                     options={{
                         responsive: true,
