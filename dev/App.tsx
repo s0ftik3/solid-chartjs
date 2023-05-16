@@ -1,123 +1,102 @@
+import { number } from 'minifaker'
+import { Component, createSignal, onMount } from 'solid-js'
+import {
+    Chart,
+    Line,
+    LineController,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+} from '../src'
+import { Hello } from '../src/hello'
 import styles from './App.module.css'
-import type { Component } from 'solid-js'
-import { Line } from '../src'
-import { generateRandomChartData, generateRandomDataset } from './utils'
-import { createSignal, For } from 'solid-js'
-import { ChartData, ChartTypeRegistry } from 'chart.js'
-import { createStore } from 'solid-js/store'
+import logo from './logo.svg'
 
 const App: Component = () => {
-    const [chartData, setChartData] = createSignal<ChartData>(
-        generateRandomChartData()
-    )
-    const [chartConfig, setChartConfig] = createStore({
-        width: 700,
-        height: 400,
+    const [ref, setRef] = createSignal()
+
+    const options = {
+        responsive: true,
+        redraw: true,
+        height: 1000,
+        width: 600,
+        plugins: {
+            legend: {
+                position: 'top' as const,
+            },
+            title: {
+                display: true,
+                text: 'Chart.js Line Chart',
+            },
+        },
+    }
+
+    const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July']
+
+    const data = {
+        labels,
+        datasets: [
+            {
+                label: 'Dataset 1',
+                data: labels.map(() => number({ min: -1000, max: 1000 })),
+                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            },
+            {
+                label: 'Dataset 2',
+                data: labels.map(() => number({ min: -1000, max: 1000 })),
+                borderColor: 'rgb(53, 162, 235)',
+                backgroundColor: 'rgba(53, 162, 235, 0.5)',
+            },
+        ],
+    }
+
+    onMount(() => {
+        Chart.register(
+            LineController,
+            CategoryScale,
+            LinearScale,
+            BarElement,
+            PointElement,
+            LineElement,
+            Title,
+            Tooltip,
+            Legend,
+        )
+        console.debug('[Chart Ref]: ref', ref())
     })
 
-    const chartTypes: (keyof ChartTypeRegistry)[] = [
-        'line',
-        'bar',
-        'doughnut',
-        'radar',
-        'polarArea',
-        'bubble',
-        'pie',
-        'scatter',
-    ]
-    const [chartType, setChartType] = createSignal<
-        keyof ChartTypeRegistry | undefined
-    >(chartTypes[0])
-
-    const onRandomizeClick = () => {
-        setChartData((prev) => generateRandomChartData(prev.datasets.length))
-    }
-    const onAddDatasetClick = () => {
-        setChartData((prev) => {
-            const datasets = prev.datasets
-            datasets.push(
-                generateRandomDataset(
-                    prev.labels as string[],
-                    prev.datasets.length + 1
-                )
-            )
-            return { ...prev, datasets }
-        })
-    }
-    const onRemoveDatasetClick = () => {
-        setChartData((prev) => {
-            const datasets = prev.datasets
-            datasets.pop()
-            return { ...prev, datasets }
-        })
-    }
-
-    const onDimensionsInput = (type: 'width' | 'height', event: any) => {
-        setChartConfig(type, () => +event.target.value)
-    }
-
-    const onTypeSelect = (event: any) => {
-        setChartType(event.target.value as keyof ChartTypeRegistry)
-    }
-
     return (
-        <div class={styles.container}>
-            <div class={styles.chart}>
-                <Line
-                    width={chartConfig.width}
-                    height={chartConfig.height}
-                    fallback={<p>Chart is not available</p>}
-                    type={chartType()}
-                    data={chartData()}
-                    options={{
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            title: {
-                                display: true,
-                                text: 'Solid Chart.js implementation',
-                            },
-                        },
-                    }}
-                />
-            </div>
-            <div class={styles.inputGroup}>
-                <select
-                    class={styles.selectField}
-                    name="types"
-                    onChange={onTypeSelect}
-                >
-                    <For each={chartTypes}>
-                        {(type) => (
-                            <option
-                                value={type}
-                                selected={chartType() === type}
-                            >
-                                {type}
-                            </option>
-                        )}
-                    </For>
-                </select>
-                <input
-                    class={styles.inputField}
-                    type="number"
-                    placeholder="Width"
-                    value={chartConfig.width}
-                    onInput={(event) => onDimensionsInput('width', event)}
-                />
-                <input
-                    class={styles.inputField}
-                    type="number"
-                    placeholder="Height"
-                    value={chartConfig.height}
-                    onInput={(event) => onDimensionsInput('height', event)}
-                />
-            </div>
-            <div class={styles.buttonGroup}>
-                <button onClick={onRandomizeClick}>Randomize</button>
-                <button onClick={onAddDatasetClick}>Add Dataset</button>
-                <button onClick={onRemoveDatasetClick}>Remove Dataset</button>
-            </div>
+        <div class={styles.App}>
+            <header class={styles.header}>
+                <img src={logo} class={styles.logo} alt="logo" />
+                <h1>
+                    <Hello />
+                </h1>
+                <p>
+                    Edit <code>src/App.tsx</code> and save to reload.
+                </p>
+                <a
+                    class={styles.link}
+                    href="https://github.com/solidjs/solid"
+                    target="_blank"
+                    rel="noopener noreferrer">
+                    Learn Solid
+                </a>
+            </header>
+
+            <Line
+                ref={setRef}
+                type="line"
+                data={data}
+                options={options}
+                fallbackContent="Loading..."
+            />
         </div>
     )
 }

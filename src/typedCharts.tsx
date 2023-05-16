@@ -1,36 +1,20 @@
-import { ChartJs } from './index'
-import { ChartJsProps } from './types'
+import * as ChartJS from 'chart.js'
+import DefaultChart from './chart'
+import type { ChartProps } from './types'
+import type { ChartType, ChartComponentLike } from 'chart.js'
 
-export type TypedChartProps = Omit<ChartJsProps, 'type'>
+export type TypedChartProps = Omit<ChartProps, 'type'>
 
-export function Line(props: TypedChartProps) {
-    return <ChartJs type="line" {...props} />
+function createTypedChart<T extends ChartType>(type: T, registerables: ChartComponentLike) {
+    ChartJS.Chart.register(registerables)
+    return (props: TypedChartProps) => <DefaultChart type={type} {...props} />
 }
 
-export function Bar(props: TypedChartProps) {
-    return <ChartJs type="bar" {...props} />
-}
-
-export function Doughnut(props: TypedChartProps) {
-    return <ChartJs type="doughnut" {...props} />
-}
-
-export function Radar(props: TypedChartProps) {
-    return <ChartJs type="radar" {...props} />
-}
-
-export function PolarArea(props: TypedChartProps) {
-    return <ChartJs type="polarArea" {...props} />
-}
-
-export function Bubble(props: TypedChartProps) {
-    return <ChartJs type="bubble" {...props} />
-}
-
-export function Pie(props: TypedChartProps) {
-    return <ChartJs type="pie" {...props} />
-}
-
-export function Scatter(props: TypedChartProps) {
-    return <ChartJs type="scatter" {...props} />
-}
+export const Line = /* #__PURE__ */ createTypedChart('line', ChartJS.LineController)
+export const Bar = /* #__PURE__ */ createTypedChart('bar', ChartJS.BarController)
+export const Radar = /* #__PURE__ */ createTypedChart('radar', ChartJS.RadarController)
+export const Doughnut = /* #__PURE__ */ createTypedChart('doughnut', ChartJS.DoughnutController)
+export const PolarArea = /* #__PURE__ */ createTypedChart('polarArea', ChartJS.PolarAreaController)
+export const Bubble = /* #__PURE__ */ createTypedChart('bubble', ChartJS.BubbleController)
+export const Pie = /* #__PURE__ */ createTypedChart('pie', ChartJS.PieController)
+export const Scatter = /* #__PURE__ */ createTypedChart('scatter', ChartJS.ScatterController)
