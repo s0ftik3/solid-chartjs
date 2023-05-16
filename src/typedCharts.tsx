@@ -52,7 +52,10 @@ export const Radar = /* #__PURE__ */ createTypedChart('radar', [
     LineElement,
 ])
 
-export const Doughnut = /* #__PURE__ */ createTypedChart('doughnut', [DoughnutController, ArcElement])
+export const Doughnut = /* #__PURE__ */ createTypedChart('doughnut', [
+    DoughnutController,
+    ArcElement,
+])
 export const PolarArea = /* #__PURE__ */ createTypedChart('polarArea', PolarAreaController)
 export const Bubble = /* #__PURE__ */ createTypedChart('bubble', BubbleController)
 export const Pie = /* #__PURE__ */ createTypedChart('pie', PieController)

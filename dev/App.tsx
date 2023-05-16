@@ -55,11 +55,7 @@ const App: Component = () => {
     }
 
     onMount(() => {
-        Chart.register(
-            Title,
-            Tooltip,
-            Legend,
-        )
+        Chart.register(Title, Tooltip, Legend)
         console.debug('[Chart Ref]: ref', ref())
     })
 
