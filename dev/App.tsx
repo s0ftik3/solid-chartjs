@@ -76,13 +76,13 @@ const App: Component = () => {
             </header>
 
             <Line ref={setRef} data={data} options={options} fallbackContent="Loading..." />
-            <Bar ref={setRef} data={data} options={options} fallbackContent="Loading..." />
+            {/* <Bar ref={setRef} data={data} options={options} fallbackContent="Loading..." />
             <Radar ref={setRef} data={data} options={options} fallbackContent="Loading..." />
             <Doughnut ref={setRef} data={data} options={options} fallbackContent="Loading..." />
             <PolarArea ref={setRef} data={data} options={options} fallbackContent="Loading..." />
             <Pie ref={setRef} data={data} options={options} fallbackContent="Loading..." />
             <Bubble ref={setRef} data={data} options={options} fallbackContent="Loading..." />
-            <Scatter ref={setRef} data={data} options={options} fallbackContent="Loading..." />
+            <Scatter ref={setRef} data={data} options={options} fallbackContent="Loading..." /> */}
         </div>
     )
 }

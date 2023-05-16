@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { mergeRefs } from '@solid-primitives/refs'
 import { Chart, ChartData, ChartItem, ChartOptions, Plugin } from 'chart.js'
 import { createEffect, mergeProps, on, onCleanup, onMount, createSignal } from 'solid-js'
 import { unwrap } from 'solid-js/store'
 import { ChartProps } from './types'
 
 export default function DefaultChart(props: ChartProps) {
-    const [canvasRef, setCanvasRef] = createSignal<HTMLCanvasElement | undefined>()
+    const [canvasRef, setCanvasRef] = createSignal<HTMLCanvasElement | null>()
     const [chart, setChart] = createSignal<Chart>()
 
     const merged = mergeProps(
@@ -82,10 +83,14 @@ export default function DefaultChart(props: ChartProps) {
 
     onCleanup(() => {
         chart()?.destroy()
+        mergeRefs(props.ref, null)
     })
 
     return (
-        <canvas ref={setCanvasRef} height={merged.height} width={merged.width}>
+        <canvas
+            ref={mergeRefs(props.ref, (el) => setCanvasRef(el))}
+            height={merged.height}
+            width={merged.width}>
             {merged.fallback}
         </canvas>
     )
