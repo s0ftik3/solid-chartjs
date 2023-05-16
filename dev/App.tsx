@@ -13,7 +13,6 @@ import {
     Tooltip,
     Legend,
 } from '../src'
-import { Hello } from '../src/hello'
 import styles from './App.module.css'
 import logo from './logo.svg'
 
@@ -75,9 +74,6 @@ const App: Component = () => {
         <div class={styles.App}>
             <header class={styles.header}>
                 <img src={logo} class={styles.logo} alt="logo" />
-                <h1>
-                    <Hello />
-                </h1>
                 <p>
                     Edit <code>src/App.tsx</code> and save to reload.
                 </p>
