@@ -6,7 +6,7 @@
 
 [![version](https://badgen.net/npm/v/solid-chartjs)](https://npmjs.com/package/solid-chartjs)
 [![downloads](https://badgen.net/npm/dm/solid-chartjs)](https://www.npmjs.com/package/solid-chartjs)
-[![telegram chat](https://img.shields.io/badge/Ask%20a%20Question-Telegram-blue)](https://t.me/vychs)
+[![telegram chat](https://img.shields.io/badge/Ask%20a%20Question-Telegram-blue)](https://t.me/solid_chartjs)
 
 The `ChartJs` component is a SolidJS wrapper around the Chart.js library, allowing you to easily create interactive charts in your SolidJS applications.
 
