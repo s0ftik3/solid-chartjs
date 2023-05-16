@@ -60,14 +60,15 @@ function MyChart() {
 ```
 
 ## Chart Props
-| Prop        | Description                                    | Type    |
-|-------------|------------------------------------------------|---------|
-| width       | The width of the chart canvas in pixels.        | number \| undefined   |
-| height      | The height of the chart canvas in pixels.       | number \| undefined   |
-| fallback    | A fallback element to display when chart fails. | JSX.Element |
-| type        | The type of the chart.                          | keyof [ChartTypeRegistry](https://www.chartjs.org/docs/latest/api/interfaces/ChartTypeRegistry.html) |
-| data        | The chart data object.                          | [ChartData](https://www.chartjs.org/docs/latest/api/interfaces/ChartData.html) \| undefined |
-| options     | The chart options object.                       | [ChartOptions](https://www.chartjs.org/docs/latest/api/interfaces/CoreChartOptions.html) \| undefined |
+| Prop     | Description                                     | Type    |
+|----------|-------------------------------------------------|---------|
+| width    | The width of the chart canvas in pixels.        | number \| undefined   |
+| height   | The height of the chart canvas in pixels.       | number \| undefined   |
+| fallback | A fallback element to display when chart fails. | JSX.Element |
+| type     | The type of the chart.                          | keyof [ChartTypeRegistry](https://www.chartjs.org/docs/latest/api/interfaces/ChartTypeRegistry.html) |
+| data     | The chart data object.                          | [ChartData](https://www.chartjs.org/docs/latest/api/interfaces/ChartData.html) \| undefined |
+| options  | The chart options object.                       | [ChartOptions](https://www.chartjs.org/docs/latest/api/interfaces/CoreChartOptions.html) \| undefined |
+| plugins  | The chart plugins object.                       | [Plugin](https://www.chartjs.org/docs/latest/api/interfaces/Plugin.html)[] \| undefined |
 
 ## Examples
 Check out `/dev` folder and run the SolidJs application to see how it works.

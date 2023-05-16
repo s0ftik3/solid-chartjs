@@ -1,4 +1,9 @@
-import { ChartData, ChartOptions, ChartTypeRegistry } from 'chart.js/auto'
+import {
+    ChartData,
+    ChartOptions,
+    ChartTypeRegistry,
+    Plugin,
+} from 'chart.js/auto'
 import { JSX } from 'solid-js/types/jsx'
 
 export interface ChartJsProps {
@@ -8,5 +13,6 @@ export interface ChartJsProps {
     type: keyof ChartTypeRegistry
     data?: ChartData
     options?: ChartOptions
+    plugins?: Plugin[]
     [key: string]: any
 }

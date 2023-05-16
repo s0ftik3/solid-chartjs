@@ -53,7 +53,7 @@ const App: Component = () => {
     }
 
     const onDimensionsInput = (type: 'width' | 'height', event: any) => {
-        setChartConfig(type, () => event.target.value)
+        setChartConfig(type, () => +event.target.value)
     }
 
     const onTypeSelect = (event: any) => {

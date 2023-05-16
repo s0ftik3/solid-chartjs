@@ -14,6 +14,7 @@ export default function ChartJs(props: ChartJsProps) {
             type: 'line',
             data: {} as ChartData,
             options: { responsive: true } as ChartOptions,
+            plugins: [],
         },
         props
     )
@@ -25,6 +26,7 @@ export default function ChartJs(props: ChartJsProps) {
             type: config.type,
             data: config.data,
             options: config.options,
+            plugins: config.plugins,
         })
     }
 
@@ -61,8 +63,10 @@ export default function ChartJs(props: ChartJsProps) {
         on(
             () => merged.type,
             () => {
+                const dimensions = [chart.width, chart.height]
                 chart.destroy()
                 init()
+                chart.resize(...dimensions)
             },
             {
                 defer: true,
