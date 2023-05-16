@@ -11,7 +11,6 @@
 The `ChartJs` component is a SolidJS wrapper around the Chart.js library, allowing you to easily create interactive charts in your SolidJS applications.
 
 - [Quick start](#quick-start)
-- [Usage](#usage)
 - [Chart Props](#chart-props)
 - [Examples](#examples)
 
