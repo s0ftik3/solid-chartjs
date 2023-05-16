@@ -1,4 +1,4 @@
-import Chart, { ChartData, ChartItem } from 'chart.js/auto'
+import Chart, { ChartData, ChartItem, ChartOptions } from 'chart.js/auto'
 import { createEffect, mergeProps, on, onCleanup, onMount } from 'solid-js'
 import { unwrap } from 'solid-js/store'
 import { ChartJsProps } from './types'
@@ -13,6 +13,7 @@ export default function ChartJs(props: ChartJsProps) {
             height: 512,
             type: 'line',
             data: {} as ChartData,
+            options: { responsive: true } as ChartOptions,
         },
         props
     )
