@@ -14,6 +14,7 @@ import {
     Tooltip,
     Legend,
 } from '../src'
+import styles from './AllCharts.module.css'
 
 const App: Component = () => {
     const [refLine, setRefLine] = createSignal()
@@ -73,29 +74,58 @@ const App: Component = () => {
 
     return (
         <div>
-            <Line ref={setRefLine} data={data} options={options} fallbackContent="Loading..." />
-            <Bar ref={setRefBar} data={data} options={options} fallbackContent="Loading..." />
-            <Radar ref={setRefRadar} data={data} options={options} fallbackContent="Loading..." />
-            <Doughnut
-                ref={setRefDoughnut}
-                data={data}
-                options={options}
-                fallbackContent="Loading..."
-            />
-            <PolarArea
-                ref={setRefPolarArea}
-                data={data}
-                options={options}
-                fallbackContent="Loading..."
-            />
-            <Pie ref={setRefPie} data={data} options={options} fallbackContent="Loading..." />
-            <Bubble ref={setRefBubble} data={data} options={options} fallbackContent="Loading..." />
-            <Scatter
-                ref={setRefScatter}
-                data={data}
-                options={options}
-                fallbackContent="Loading..."
-            />
+            <div class={styles.container}>
+                <div class={styles.chart}>
+                    <Line
+                        ref={setRefLine}
+                        data={data}
+                        options={options}
+                        fallbackContent="Loading..."
+                    />
+                    <Bar
+                        ref={setRefBar}
+                        data={data}
+                        options={options}
+                        fallbackContent="Loading..."
+                    />
+                    <Radar
+                        ref={setRefRadar}
+                        data={data}
+                        options={options}
+                        fallbackContent="Loading..."
+                    />
+                    <Doughnut
+                        ref={setRefDoughnut}
+                        data={data}
+                        options={options}
+                        fallbackContent="Loading..."
+                    />
+                    <PolarArea
+                        ref={setRefPolarArea}
+                        data={data}
+                        options={options}
+                        fallbackContent="Loading..."
+                    />
+                    <Pie
+                        ref={setRefPie}
+                        data={data}
+                        options={options}
+                        fallbackContent="Loading..."
+                    />
+                    <Bubble
+                        ref={setRefBubble}
+                        data={data}
+                        options={options}
+                        fallbackContent="Loading..."
+                    />
+                    <Scatter
+                        ref={setRefScatter}
+                        data={data}
+                        options={options}
+                        fallbackContent="Loading..."
+                    />
+                </div>
+            </div>
         </div>
     )
 }
