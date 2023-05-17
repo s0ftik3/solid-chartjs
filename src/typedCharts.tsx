@@ -35,23 +35,12 @@ export const Line = /* #__PURE__ */ createTypedChart('line', [
     PointElement,
     LineElement,
 ])
-
 export const Bar = /* #__PURE__ */ createTypedChart('bar', [
     BarController,
     CategoryScale,
-    LinearScale,
-    PointElement,
     BarElement,
 ])
-
-export const Radar = /* #__PURE__ */ createTypedChart('radar', [
-    RadarController,
-    CategoryScale,
-    RadialLinearScale,
-    PointElement,
-    LineElement,
-])
-
+export const Radar = /* #__PURE__ */ createTypedChart('radar', [RadarController, RadialLinearScale])
 export const Doughnut = /* #__PURE__ */ createTypedChart('doughnut', [
     DoughnutController,
     ArcElement,

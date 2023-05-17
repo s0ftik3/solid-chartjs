@@ -24,6 +24,15 @@ export default function DefaultChart(props: ChartProps) {
     const init = () => {
         const ctx = canvasRef()?.getContext('2d') as ChartItem
         const config = unwrap(merged)
+
+        if (config.type !== 'radar') {
+            //* remove the RadialLinearScale from the chart's scales
+            if (config.options.scales?.r) {
+                console.debug('[Solid-ChartJS]: Removing un-needed RadialLinearScale')
+                delete config.options.scales?.r
+            }
+        }
+
         const chart = new Chart(ctx, {
             type: config.type,
             data: config.data,

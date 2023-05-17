@@ -1,5 +1,5 @@
 {
-    "version": "0.0.0",
+    "version": "1.2.4",
     "name": "solid-chartjs",
     "description": "SolidJS components for Chart.js",
     "license": "MIT",
@@ -10,10 +10,10 @@
     "contributors": [],
     "repository": {
         "type": "git",
-        "url": "https://github.com/solid-community/solid-chartjs.git"
+        "url": "https://github.com/s0ftik3/solid-chartjs.git"
     },
     "bugs": {
-        "url": "https://github.com/solid-community/solid-chartjs/issues"
+        "url": "https://github.com/s0ftik3/solid-chartjs/issues"
     },
     "files": [
         "dist"
