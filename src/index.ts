@@ -1,5 +1,3 @@
-import ChartJs from './chart'
-
-export type { ChartJsProps } from './types'
-export { ChartJs }
+export type { ChartProps } from './types.js'
 export * from './typedCharts'
+export * from 'chart.js'

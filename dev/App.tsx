@@ -1,15 +1,14 @@
-import styles from './App.module.css'
-import type { Component } from 'solid-js'
-import { Line } from '../src'
-import { generateRandomChartData, generateRandomDataset } from './utils'
-import { createSignal, For } from 'solid-js'
 import { ChartData, ChartTypeRegistry } from 'chart.js'
+import { createSignal, For, onMount } from 'solid-js'
 import { createStore } from 'solid-js/store'
+import { Chart, DefaultChart, Title, Tooltip, Legend } from '../src'
+import styles from './App.module.css'
+import { generateRandomChartData, generateRandomDataset } from './utils'
+import type { Component } from 'solid-js'
 
 const App: Component = () => {
-    const [chartData, setChartData] = createSignal<ChartData>(
-        generateRandomChartData()
-    )
+    const [chartData, setChartData] = createSignal<ChartData>(generateRandomChartData())
+    const [ref, setRef] = createSignal<HTMLCanvasElement | null>(null)
     const [chartConfig, setChartConfig] = createStore({
         width: 700,
         height: 400,
@@ -25,9 +24,9 @@ const App: Component = () => {
         'pie',
         'scatter',
     ]
-    const [chartType, setChartType] = createSignal<
-        keyof ChartTypeRegistry | undefined
-    >(chartTypes[0])
+    const [chartType, setChartType] = createSignal<keyof ChartTypeRegistry | undefined>(
+        chartTypes[0],
+    )
 
     const onRandomizeClick = () => {
         setChartData((prev) => generateRandomChartData(prev.datasets.length))
@@ -35,12 +34,7 @@ const App: Component = () => {
     const onAddDatasetClick = () => {
         setChartData((prev) => {
             const datasets = prev.datasets
-            datasets.push(
-                generateRandomDataset(
-                    prev.labels as string[],
-                    prev.datasets.length + 1
-                )
-            )
+            datasets.push(generateRandomDataset(prev.labels as string[], prev.datasets.length + 1))
             return { ...prev, datasets }
         })
     }
@@ -60,18 +54,26 @@ const App: Component = () => {
         setChartType(event.target.value as keyof ChartTypeRegistry)
     }
 
+    onMount(() => {
+        Chart.register(Title, Tooltip, Legend)
+        console.debug('[Chart Ref]:', ref())
+    })
+
     return (
         <div class={styles.container}>
             <div class={styles.chart}>
-                <Line
+                <DefaultChart
+                    ref={setRef}
                     width={chartConfig.width}
                     height={chartConfig.height}
                     fallback={<p>Chart is not available</p>}
-                    type={chartType()}
+                    type={chartType()!}
                     data={chartData()}
                     options={{
                         responsive: true,
                         maintainAspectRatio: false,
+                        borderColor: 'rgb(53, 162, 235)',
+                        backgroundColor: 'rgba(53, 162, 235, 0.5)',
                         plugins: {
                             title: {
                                 display: true,
@@ -82,17 +84,10 @@ const App: Component = () => {
                 />
             </div>
             <div class={styles.inputGroup}>
-                <select
-                    class={styles.selectField}
-                    name="types"
-                    onChange={onTypeSelect}
-                >
+                <select class={styles.selectField} name="types" onChange={onTypeSelect}>
                     <For each={chartTypes}>
                         {(type) => (
-                            <option
-                                value={type}
-                                selected={chartType() === type}
-                            >
+                            <option value={type} selected={chartType() === type}>
                                 {type}
                             </option>
                         )}

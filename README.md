@@ -8,11 +8,14 @@
 [![downloads](https://badgen.net/npm/dm/solid-chartjs)](https://www.npmjs.com/package/solid-chartjs)
 [![telegram chat](https://img.shields.io/badge/Ask%20a%20Question-Telegram-blue)](https://t.me/solid_chartjs)
 
-The `ChartJs` component is a SolidJS wrapper around the Chart.js library, allowing you to easily create interactive charts in your SolidJS applications.
+The `solid-chartjs` library is a SolidJS wrapper around the [`Chart.js`](https://www.chartjs.org) library, allowing you to easily create interactive charts in your SolidJS applications.
 
-- [Quick start](#quick-start)
-- [Chart Props](#chart-props)
-- [Examples](#examples)
+> **Note**: This library is _heavily_ inspired by [react-chartjs-2](https://react-chartjs-2.js.org/)
+
+- [solid-chartjs](#solid-chartjs)
+  - [Quick start](#quick-start)
+  - [Chart Props](#chart-props)
+  - [Examples](#examples)
 
 ## Quick start
 
@@ -29,9 +32,31 @@ pnpm add solid-chartjs
 Usage:
 
 ```tsx
-import { ChartJs } from 'solid-chartjs'
+import { onMount } from 'solid-js'
+import { Line, 
+         Bar, 
+         Doughnut, 
+         Radar, 
+         PolarArea, 
+         Bubble, 
+         Pie, 
+         Scatter, 
+         Title,
+         Tooltip,
+         Legend, } from 'solid-chartjs'
 
-function MyChart() {
+const MyChart = () => {
+
+    //* Register optional elements 
+    onMount(() => {
+        Chart.register(
+            Title,
+            Tooltip,
+            Legend,
+        )
+    })
+
+
     const chartData = {
         labels: ['January', 'February', 'March', 'April', 'May'],
         datasets: [
@@ -48,18 +73,16 @@ function MyChart() {
     }
 
     return (
-        <ChartJs
-            type="line"
-            data={chartData}
-            options={chartOptions}
-            width={400}
-            height={300}
-        />
+        <Line data={data} options={options} width={500} height={500} />
+        <Bar data={data} options={options} width={500} height={500} />
+        <Doughnut data={data} options={options} width={500} height={500} />
+        // ...etc
     )
 }
 ```
 
 ## Chart Props
+
 | Prop     | Description                                     | Type    |
 |----------|-------------------------------------------------|---------|
 | width    | The width of the chart canvas in pixels.        | number \| undefined   |
@@ -71,24 +94,79 @@ function MyChart() {
 | plugins  | The chart plugins object.                       | [Plugin](https://www.chartjs.org/docs/latest/api/interfaces/Plugin.html)[] \| undefined |
 
 ## Examples
+
 Check out `/dev` folder and run the SolidJs application to see how it works.
 
-You can also use typed charts components:
-```tsx
-import { Line, Bar, Doughnut, Radar, PolarArea, Bubble, Pie, Scatter } from './typedCharts'
+You can also use the `DefaultChart` components:
 
-<Line data={data} options={options} width={500} height={500} />
-<Bar data={data} options={options} width={500} height={500} />
-<Doughnut data={data} options={options} width={500} height={500} />
-// ...etc
+> **Note**: `DefaultChart` is a wrapper around `Chart` component, so you can use all the props from `Chart` component.
+> `DefaultChart` component does _not_ have it's registerable elements registered by default, so you need to register them yourself.
+
+`Chart` is the default `Chart.js` class, it can be access and used at any time.
+
+```tsx
+import { onMount } from 'solid-js'
+import { Chart, 
+         DefaultChart, 
+         LineController, 
+         CategoryScale,
+         PointElement,
+         LineElement, 
+         LinearScale } from 'solid-chartjs'
+
+const MyChart = () => {
+    //* Register all the required elements and scales for a line chart
+    onMount(() => {
+        Chart.register(LineController, 
+                       CategoryScale,
+                       PointElement,
+                       LineElement, 
+                       LinearScale)
+    })
+
+    const chartData = {
+        labels: ['January', 'February', 'March', 'April', 'May'],
+        datasets: [
+            {
+                label: 'Sales',
+                data: [50, 60, 70, 80, 90],
+            },
+        ],
+    }
+
+    const chartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+    }
+
+    return (
+        <DefaultChart
+            type="line"
+            data={chartData}
+            options={chartOptions}
+            width={400}
+            height={300}
+        />
+    )
+}
 ```
 
 Usage of `fallback` prop:
+
 ```tsx
-<ChartJs
+
+const fallback = () => {
+    return (
+        <div>
+            <p>Chart is not available</p>
+        </div>
+    )
+}
+
+<DefaultChart
     type="bar"
     data={chartData}
     options={chartOptions}
-    fallback={<p>Chart is not available</p>}
+    fallback={fallback}
 />
 ```

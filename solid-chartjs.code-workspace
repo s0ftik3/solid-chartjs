@@ -1,0 +1,34 @@
+{
+    "folders": [
+        {
+            "name": "Repo Root",
+            "path": "."
+        },
+        {
+            "name": "Source",
+            "path": "./src"
+        },
+        {
+            "name": "Dev",
+            "path": "./dev"
+        }
+    ],
+    "settings": {
+        "files.autoSave": "afterDelay",
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "[jsonc]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[javascript]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[typescript]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "liveServer.settings.multiRootWorkspaceName": "ETVR",
+        "[typescriptreact]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "cSpell.words": ["minifaker", "registerables"]
+    }
+}

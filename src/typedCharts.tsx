@@ -1,36 +1,51 @@
-import { ChartJs } from './index'
-import { ChartJsProps } from './types'
+import {
+    Chart,
+    LineController,
+    BarController,
+    RadarController,
+    DoughnutController,
+    PolarAreaController,
+    BubbleController,
+    PieController,
+    ScatterController,
+    CategoryScale,
+    LinearScale,
+    RadialLinearScale,
+    PointElement,
+    LineElement,
+    BarElement,
+    ArcElement,
+} from 'chart.js'
+import DefaultChart from './chart'
+import type { ChartProps } from './types'
+import type { ChartType, ChartComponentLike } from 'chart.js'
 
-export type TypedChartProps = Omit<ChartJsProps, 'type'>
+export type TypedChartProps = Omit<ChartProps, 'type'>
+export { DefaultChart }
 
-export function Line(props: TypedChartProps) {
-    return <ChartJs type="line" {...props} />
+function createTypedChart<T extends ChartType>(type: T, registerables: ChartComponentLike) {
+    Chart.register(registerables)
+    return (props: TypedChartProps) => <DefaultChart type={type} {...props} />
 }
 
-export function Bar(props: TypedChartProps) {
-    return <ChartJs type="bar" {...props} />
-}
-
-export function Doughnut(props: TypedChartProps) {
-    return <ChartJs type="doughnut" {...props} />
-}
-
-export function Radar(props: TypedChartProps) {
-    return <ChartJs type="radar" {...props} />
-}
-
-export function PolarArea(props: TypedChartProps) {
-    return <ChartJs type="polarArea" {...props} />
-}
-
-export function Bubble(props: TypedChartProps) {
-    return <ChartJs type="bubble" {...props} />
-}
-
-export function Pie(props: TypedChartProps) {
-    return <ChartJs type="pie" {...props} />
-}
-
-export function Scatter(props: TypedChartProps) {
-    return <ChartJs type="scatter" {...props} />
-}
+export const Line = /* #__PURE__ */ createTypedChart('line', [
+    LineController,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+])
+export const Bar = /* #__PURE__ */ createTypedChart('bar', [
+    BarController,
+    CategoryScale,
+    BarElement,
+])
+export const Radar = /* #__PURE__ */ createTypedChart('radar', [RadarController, RadialLinearScale])
+export const Doughnut = /* #__PURE__ */ createTypedChart('doughnut', [
+    DoughnutController,
+    ArcElement,
+])
+export const PolarArea = /* #__PURE__ */ createTypedChart('polarArea', PolarAreaController)
+export const Bubble = /* #__PURE__ */ createTypedChart('bubble', BubbleController)
+export const Pie = /* #__PURE__ */ createTypedChart('pie', PieController)
+export const Scatter = /* #__PURE__ */ createTypedChart('scatter', ScatterController)
