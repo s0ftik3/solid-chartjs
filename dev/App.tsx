@@ -1,4 +1,4 @@
-import { ChartData, ChartTypeRegistry } from 'chart.js'
+import { ChartData, ChartTypeRegistry, Colors } from 'chart.js'
 import { createSignal, For, onMount } from 'solid-js'
 import { createStore } from 'solid-js/store'
 import { Chart, DefaultChart, Title, Tooltip, Legend } from '../src'
@@ -55,7 +55,7 @@ const App: Component = () => {
     }
 
     onMount(() => {
-        Chart.register(Title, Tooltip, Legend)
+        Chart.register(Title, Tooltip, Legend, Colors)
         console.debug('[Chart Ref]:', ref())
     })
 
@@ -72,12 +72,13 @@ const App: Component = () => {
                     options={{
                         responsive: true,
                         maintainAspectRatio: false,
-                        borderColor: 'rgb(53, 162, 235)',
-                        backgroundColor: 'rgba(53, 162, 235, 0.5)',
                         plugins: {
                             title: {
                                 display: true,
                                 text: 'Solid Chart.js implementation',
+                            },
+                            colors: {
+                                forceOverride: true,
                             },
                         },
                     }}
