@@ -10,12 +10,10 @@
 
 The `solid-chartjs` library is a SolidJS wrapper around the [`Chart.js`](https://www.chartjs.org) library, allowing you to easily create interactive charts in your SolidJS applications.
 
-> **Note**: This library is _heavily_ inspired by [react-chartjs-2](https://react-chartjs-2.js.org/)
-
-- [solid-chartjs](#solid-chartjs)
   - [Quick start](#quick-start)
   - [Chart Props](#chart-props)
   - [Examples](#examples)
+  - [Credits](#credits)
 
 ## Quick start
 
@@ -33,21 +31,20 @@ Usage:
 
 ```tsx
 import { onMount } from 'solid-js'
-import { Line, 
-         Bar, 
-         Doughnut, 
-         Radar, 
-         PolarArea, 
-         Bubble, 
-         Pie, 
-         Scatter, 
+import { Line,
+         Bar,
+         Doughnut,
+         Radar,
+         PolarArea,
+         Bubble,
+         Pie,
+         Scatter,
          Title,
          Tooltip,
          Legend, } from 'solid-chartjs'
 
 const MyChart = () => {
-
-    //* Register optional elements 
+    //* Register optional elements
     onMount(() => {
         Chart.register(
             Title,
@@ -100,27 +97,27 @@ Check out `/dev` folder and run the SolidJs application to see how it works.
 You can also use the `DefaultChart` components:
 
 > **Note**: `DefaultChart` is a wrapper around `Chart` component, so you can use all the props from `Chart` component.
-> `DefaultChart` component does _not_ have it's registerable elements registered by default, so you need to register them yourself.
+> `DefaultChart` component does _not_ have its registrable elements registered by default, so you need to register them yourself.
 
 `Chart` is the default `Chart.js` class, it can be access and used at any time.
 
 ```tsx
 import { onMount } from 'solid-js'
-import { Chart, 
-         DefaultChart, 
-         LineController, 
+import { Chart,
+         DefaultChart,
+         LineController,
          CategoryScale,
          PointElement,
-         LineElement, 
+         LineElement,
          LinearScale } from 'solid-chartjs'
 
 const MyChart = () => {
     //* Register all the required elements and scales for a line chart
     onMount(() => {
-        Chart.register(LineController, 
+        Chart.register(LineController,
                        CategoryScale,
                        PointElement,
-                       LineElement, 
+                       LineElement,
                        LinearScale)
     })
 
@@ -170,3 +167,8 @@ const fallback = () => {
     fallback={fallback}
 />
 ```
+
+## Credits
+- This library is _heavily_ inspired by [react-chartjs-2](https://react-chartjs-2.js.org/)
+- Awesome charting library [Chart.js](https://www.chartjs.org)
+- Flexible library for building user interfaces [SolidJs](https://www.solidjs.com/)

@@ -1,13 +1,7 @@
 import type { Ref } from '@solid-primitives/refs'
-import type {
-    Chart,
-    ChartData,
-    ChartOptions,
-    Plugin,
-    UpdateMode,
-    ChartTypeRegistry,
-} from 'chart.js'
+import type { ChartData, ChartOptions, Plugin, ChartTypeRegistry } from 'chart.js'
 import type { JSXElement } from 'solid-js'
+
 /**
  * Chart props
  */
@@ -34,52 +28,25 @@ export interface ChartProps {
      */
     plugins?: Plugin[]
     /**
-     * Teardown and redraw chart on every update
-     * @default false
-     */
-    redraw?: boolean
-    /**
-     * Key name to identify dataset
-     * @default 'label'
-     */
-    datasetIdKey?: string
-    /**
-     * A fallback for when the canvas cannot be rendered. Can be used for accessible chart descriptions
-     * @see https://www.chartjs.org/docs/latest/general/accessibility.html
-     * @default null
-     * @todo Replace with `children` prop.
-     */
-    fallbackContent?: string | JSXElement
-    /**
-     * A mode string to indicate transition configuration should be used.
-     * @see https://www.chartjs.org/docs/latest/developers/api.html#update-mode
-     */
-    updateMode?: UpdateMode
-
-    /**
      * The width of the canvas element
-     * @default 300
+     * @default 512
      */
     width?: number | undefined
-
     /**
      * The height of the canvas element
-     * @default 150
+     * @default 512
      */
     height?: number | undefined
-
     /**
      * The fallback element to render when the canvas cannot be rendered.
      * @default null
      */
     fallback?: JSXElement | null
-
     /**
      * Support for any other Chart.js options
      * @default {}
      */
     [key: string]: any
-
     /**
      * A ref to the Chart.js instance
      * @default null

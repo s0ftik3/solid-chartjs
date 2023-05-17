@@ -1,13 +1,8 @@
 {
-    "version": "1.2.4",
     "name": "solid-chartjs",
+    "version": "1.2.4",
     "description": "SolidJS components for Chart.js",
     "license": "MIT",
-    "authors": [
-        "DaOfficialWizard",
-        "s0ftik3"
-    ],
-    "contributors": [],
     "repository": {
         "type": "git",
         "url": "https://github.com/s0ftik3/solid-chartjs.git"

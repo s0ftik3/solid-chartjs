@@ -1,3 +1,5 @@
+import { ChartData, ChartDataset } from 'chart.js'
+
 export const fillArrayWithRandomNumbers = (min: number, max: number, length = 10) => {
     const array: number[] = []
 
@@ -7,18 +9,6 @@ export const fillArrayWithRandomNumbers = (min: number, max: number, length = 10
     }
 
     return array
-}
-
-export const generateRandomString = (length = 5): string => {
-    const chars = 'abcdefghijklmnopqrstuvwxyz'
-    let result = ''
-
-    for (let i = 0; i < length; i++) {
-        const randomIndex = Math.floor(Math.random() * chars.length)
-        result += chars.charAt(randomIndex)
-    }
-
-    return result
 }
 
 export function generateRandomNumber(min: number, max: number): number {
@@ -45,7 +35,7 @@ export const generateRandomDataset = (labels: string[], index: number) => ({
     ),
 })
 
-export const generateRandomChartData = (datasetsLength = 2) => {
+export const generateRandomChartData = (datasetsLength = 2): ChartData => {
     const labels = [
         'January',
         'February',
@@ -60,7 +50,7 @@ export const generateRandomChartData = (datasetsLength = 2) => {
         'November',
         'December',
     ]
-    const datasets: object[] = []
+    const datasets: ChartDataset[] = []
 
     for (let i = 0; i < datasetsLength; i++) {
         datasets.push(generateRandomDataset(labels, i + 1))
