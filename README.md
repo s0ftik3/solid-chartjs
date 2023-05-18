@@ -27,7 +27,7 @@ Usage:
 
 ```tsx
 import { onMount } from 'solid-js'
-import { Chart, Line, Title, Tooltip, Legend } from 'solid-chartjs'
+import { Chart, Line, Title, Tooltip, Legend, Colors } from 'solid-chartjs'
 
 const MyChart = () => {
     /**
@@ -39,6 +39,7 @@ const MyChart = () => {
             Title,
             Tooltip,
             Legend,
+            Colors,
         )
     })
 
@@ -57,7 +58,9 @@ const MyChart = () => {
     }
 
     return (
-        <Line data={chartData} options={chartOptions} width={500} height={500} />
+        <div>
+            <Line data={chartData} options={chartOptions} width={500} height={500} />
+        </div>
     )
 }
 ```
