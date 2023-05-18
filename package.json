@@ -15,6 +15,39 @@
         "dist"
     ],
     "private": false,
+    "sideEffects": false,
+    "exports": {
+        "solid": {
+            "development": "./dist/index.dev.jsx",
+            "import": "./dist/index.jsx"
+        },
+        "browser": {
+            "development": {
+                "require": "./dist/index.dev.cjs",
+                "import": {
+                    "types": "./dist/index.d.ts",
+                    "default": "./dist/index.dev.js"
+                }
+            },
+            "require": "./dist/index.cjs",
+            "import": {
+                "types": "./dist/index.d.ts",
+                "default": "./dist/index.js"
+            }
+        },
+        "development": {
+            "require": "./dist/index.dev.cjs",
+            "import": {
+                "types": "./dist/index.d.ts",
+                "default": "./dist/index.dev.js"
+            }
+        },
+        "require": "./dist/index.cjs",
+        "import": {
+            "types": "./dist/index.d.ts",
+            "default": "./dist/index.js"
+        }
+    },
     "main": "./dist/index.cjs",
     "module": "./dist/index.js",
     "types": "./dist/index.d.ts",
