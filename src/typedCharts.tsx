@@ -21,7 +21,6 @@ import type { ChartProps } from './types'
 import type { ChartType, ChartComponentLike } from 'chart.js'
 
 export type TypedChartProps = Omit<ChartProps, 'type'>
-export { DefaultChart }
 
 function createTypedChart<T extends ChartType>(type: T, registerables: ChartComponentLike) {
     Chart.register(registerables)

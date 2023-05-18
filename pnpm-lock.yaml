@@ -40,8 +40,8 @@ specifiers:
   prettier: ^2.8.8
   solid-js: ^1.7.5
   tsd: ^0.28.1
-  tsup: ^6.7.0
-  tsup-preset-solid: ^0.1.8
+  tsup: ^6.5.0
+  tsup-preset-solid: ^0.0.6
   typescript: ^5.0.4
   vite: ^4.3.6
   vite-plugin-solid: ^2.7.0
@@ -91,7 +91,7 @@ devDependencies:
   solid-js: 1.7.5
   tsd: 0.28.1
   tsup: 6.7.0_lrhy7xr3aqvoc2csrh5qggj55y
-  tsup-preset-solid: 0.1.8_47jb52si6gutz343nsdlgckq2e
+  tsup-preset-solid: 0.0.6_47jb52si6gutz343nsdlgckq2e
   typescript: 5.0.4
   vite: 4.3.7_@types+node@20.1.7
   vite-plugin-solid: 2.7.0_solid-js@1.7.5+vite@4.3.7
@@ -3356,6 +3356,21 @@ packages:
       is-symbol: 1.0.4
     dev: true
 
+  /esbuild-plugin-solid/0.4.2_a5ovxold3lzawhf6lk7rpywqxq:
+    resolution: {integrity: sha512-T5GphLoud3RumjeNYO3K9WVjWDzVKG5evlS7hUEUI0n9tiCL+CnbvJh3SSwFi3xeeXpZRrnZc1gd6FWQsVobTg==}
+    peerDependencies:
+      esbuild: '>=0.12'
+      solid-js: '>= 1.0'
+    dependencies:
+      '@babel/core': 7.21.8
+      '@babel/preset-typescript': 7.21.5_@babel+core@7.21.8
+      babel-preset-solid: 1.7.4_@babel+core@7.21.8
+      esbuild: 0.17.19
+      solid-js: 1.7.5
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /esbuild-plugin-solid/0.5.0_a5ovxold3lzawhf6lk7rpywqxq:
     resolution: {integrity: sha512-ITK6n+0ayGFeDVUZWNMxX+vLsasEN1ILrg4pISsNOQ+mq4ljlJJiuXotInd+HE0MzwTcA9wExT1yzDE2hsqPsg==}
     peerDependencies:
@@ -6267,12 +6282,13 @@ packages:
     resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}
     dev: true
 
-  /tsup-preset-solid/0.1.8_47jb52si6gutz343nsdlgckq2e:
-    resolution: {integrity: sha512-V5TZFEZY9emACO3AZvKyCRzdoyjUcuMEEbTGcJnCma7OVvGnSNVoewFff9g0CaveJ8cZcC3u2tW9gMaxmPZ71A==}
+  /tsup-preset-solid/0.0.6_47jb52si6gutz343nsdlgckq2e:
+    resolution: {integrity: sha512-bc8iwRSYyLHeV0poJZ3lS2+PY/jrGQibPWrJjjy1VSKrOuQb7+Tur50x+fGiLaoI/g8rST+cNiehNAeUbb62Zg==}
+    engines: {node: '>=18'}
     peerDependencies:
       tsup: ^6.5.0
     dependencies:
-      esbuild-plugin-solid: 0.5.0_a5ovxold3lzawhf6lk7rpywqxq
+      esbuild-plugin-solid: 0.4.2_a5ovxold3lzawhf6lk7rpywqxq
       tsup: 6.7.0_lrhy7xr3aqvoc2csrh5qggj55y
       type-fest: 3.10.0_typescript@5.0.4
     transitivePeerDependencies:
