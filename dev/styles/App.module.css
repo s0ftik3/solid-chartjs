@@ -102,7 +102,6 @@ button:hover {
     color: #3080d0;
     font-size: 0.8rem;
     padding: 8px 16px;
-    margin: 0 8px 8px 0;
 }
 
 .selectField:hover,
@@ -110,4 +109,24 @@ button:hover {
     background: rgba(40, 44, 52, 0.1);
     border-color: #3080d0;
     outline: none;
+}
+
+.selectContainer {
+    padding: 3vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.link {
+    color: #3080d0;
+    text-decoration: none;
+    transition: ease-in 0.25s;
+    position: relative;
+    display: inline-block;
+}
+
+.link:hover,
+.link:focus {
+    color: #183a5c;
 }

@@ -10,10 +10,10 @@
 
 The `solid-chartjs` library is a SolidJS wrapper around the [`Chart.js`](https://www.chartjs.org) library, allowing you to easily create interactive charts in your SolidJS applications.
 
-  - [Quick start](#quick-start)
-  - [Chart Props](#chart-props)
-  - [Examples](#examples)
-  - [Credits](#credits)
+-   [Quick start](#quick-start)
+-   [Chart Props](#chart-props)
+-   [Examples](#examples)
+-   [Credits](#credits)
 
 ## Quick start
 
@@ -27,7 +27,8 @@ Usage:
 
 ```tsx
 import { onMount } from 'solid-js'
-import { Chart, Line, Title, Tooltip, Legend, Colors } from 'solid-chartjs'
+import { Chart, Title, Tooltip, Legend, Colors } from 'chart.js'
+import { Line } from 'solid-chartjs'
 
 const MyChart = () => {
     /**
@@ -35,12 +36,7 @@ const MyChart = () => {
      * otherwise you will have the most primitive UI
      */
     onMount(() => {
-        Chart.register(
-            Title,
-            Tooltip,
-            Legend,
-            Colors,
-        )
+        Chart.register(Title, Tooltip, Legend, Colors)
     })
 
     const chartData = {
@@ -65,17 +61,28 @@ const MyChart = () => {
 }
 ```
 
+If you don't want to import and register the controllers, elements, scales, and plugins you want to use, you can use the following solution:
+
+> **Note**: it is considered to better use the tree-shakable way to decrease the bundle size.
+
+```tsx
+import 'chart.js/auto'
+import { DefaultChart } from 'solid-chartjs'
+
+<DefaultChart type="line" data={data} options={options} />
+```
+
 ## Chart Props
 
-| Prop     | Description                                     | Type    |
-|----------|-------------------------------------------------|---------|
-| width    | The width of the chart canvas in pixels.        | number \| undefined   |
-| height   | The height of the chart canvas in pixels.       | number \| undefined   |
-| fallback | A fallback element to display when chart fails. | JSX.Element |
-| type     | The type of the chart.                          | keyof [ChartTypeRegistry](https://www.chartjs.org/docs/latest/api/interfaces/ChartTypeRegistry.html) |
-| data     | The chart data object.                          | [ChartData](https://www.chartjs.org/docs/latest/api/interfaces/ChartData.html) \| undefined |
+| Prop     | Description                                     | Type                                                                                                  |
+| -------- | ----------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| width    | The width of the chart canvas in pixels.        | number \| undefined                                                                                   |
+| height   | The height of the chart canvas in pixels.       | number \| undefined                                                                                   |
+| fallback | A fallback element to display when chart fails. | JSX.Element                                                                                           |
+| type     | The type of the chart.                          | keyof [ChartTypeRegistry](https://www.chartjs.org/docs/latest/api/interfaces/ChartTypeRegistry.html)  |
+| data     | The chart data object.                          | [ChartData](https://www.chartjs.org/docs/latest/api/interfaces/ChartData.html) \| undefined           |
 | options  | The chart options object.                       | [ChartOptions](https://www.chartjs.org/docs/latest/api/interfaces/CoreChartOptions.html) \| undefined |
-| plugins  | The chart plugins object.                       | [Plugin](https://www.chartjs.org/docs/latest/api/interfaces/Plugin.html)[] \| undefined |
+| plugins  | The chart plugins object.                       | [Plugin](https://www.chartjs.org/docs/latest/api/interfaces/Plugin.html)[] \| undefined               |
 
 ## Examples
 
@@ -84,36 +91,28 @@ Check out `/dev` folder and run the SolidJs application to see how it works.
 You can also use the `DefaultChart` components:
 
 > **Note**: `DefaultChart` is a wrapper around `Chart` component, so you can use all the props from `Chart` component.
-> `DefaultChart` component does _not_ have its registrable elements registered by default, so you need to register them yourself.
-
-`Chart` is the default `Chart.js` class, it can be access and used at any time.
+> `DefaultChart` component does _not_ have its registrable elements registered by default, so you need to register them yourself unless you use `chart.js/auto`.
 
 ```tsx
 import { onMount } from 'solid-js'
-import { Chart, DefaultChart, LineController, CategoryScale, PointElement, LineElement, LinearScale } from 'solid-chartjs'
+import {
+    Chart,
+    LineController,
+    CategoryScale,
+    PointElement,
+    LineElement,
+    LinearScale,
+} from 'chart.js'
+import { DefaultChart } from 'solid-chartjs'
 
 const MyChart = () => {
     onMount(() => {
-        Chart.register(
-            LineController,
-            CategoryScale,
-            PointElement,
-            LineElement,
-            LinearScale
-        )
+        Chart.register(LineController, CategoryScale, PointElement, LineElement, LinearScale)
     })
 
     // ... your data and options objects
 
-    return (
-        <DefaultChart
-            type="line"
-            data={data}
-            options={options}
-            width={400}
-            height={300}
-        />
-    )
+    return <DefaultChart type="line" data={data} options={options} width={400} height={300} />
 }
 ```
 
@@ -128,15 +127,11 @@ const fallback = () => {
     )
 }
 
-<DefaultChart
-    type="bar"
-    data={chartData}
-    options={chartOptions}
-    fallback={fallback}
-/>
+<DefaultChart type="bar" data={chartData} options={chartOptions} fallback={fallback} />
 ```
 
 ## Credits
-- This library is _heavily_ inspired by [react-chartjs-2](https://react-chartjs-2.js.org/)
-- Awesome charting library [Chart.js](https://www.chartjs.org)
-- Flexible library for building user interfaces [SolidJs](https://www.solidjs.com/)
+
+-   This library is _heavily_ inspired by [react-chartjs-2](https://react-chartjs-2.js.org/)
+-   Awesome charting library [Chart.js](https://www.chartjs.org)
+-   Flexible library for building user interfaces [SolidJs](https://www.solidjs.com/)
