@@ -17,34 +17,23 @@ The `solid-chartjs` library is a SolidJS wrapper around the [`Chart.js`](https:/
 
 ## Quick start
 
-Installation:
+Installation (`npm` & `yarn` are also supported):
 
 ```bash
-npm i solid-chartjs
-# or
-yarn add solid-chartjs
-# or
-pnpm add solid-chartjs
+pnpm add solid-chartjs chart.js @solid-primitives/refs
 ```
 
 Usage:
 
 ```tsx
 import { onMount } from 'solid-js'
-import { Line,
-         Bar,
-         Doughnut,
-         Radar,
-         PolarArea,
-         Bubble,
-         Pie,
-         Scatter,
-         Title,
-         Tooltip,
-         Legend, } from 'solid-chartjs'
+import { Chart, Line, Title, Tooltip, Legend } from 'solid-chartjs'
 
 const MyChart = () => {
-    //* Register optional elements
+    /**
+     * You must register optional elements before using the chart,
+     * otherwise you will have the most primitive UI
+     */
     onMount(() => {
         Chart.register(
             Title,
@@ -52,7 +41,6 @@ const MyChart = () => {
             Legend,
         )
     })
-
 
     const chartData = {
         labels: ['January', 'February', 'March', 'April', 'May'],
@@ -63,17 +51,13 @@ const MyChart = () => {
             },
         ],
     }
-
     const chartOptions = {
         responsive: true,
         maintainAspectRatio: false,
     }
 
     return (
-        <Line data={data} options={options} width={500} height={500} />
-        <Bar data={data} options={options} width={500} height={500} />
-        <Doughnut data={data} options={options} width={500} height={500} />
-        // ...etc
+        <Line data={chartData} options={chartOptions} width={500} height={500} />
     )
 }
 ```
@@ -103,44 +87,26 @@ You can also use the `DefaultChart` components:
 
 ```tsx
 import { onMount } from 'solid-js'
-import { Chart,
-         DefaultChart,
-         LineController,
-         CategoryScale,
-         PointElement,
-         LineElement,
-         LinearScale } from 'solid-chartjs'
+import { Chart, DefaultChart, LineController, CategoryScale, PointElement, LineElement, LinearScale } from 'solid-chartjs'
 
 const MyChart = () => {
-    //* Register all the required elements and scales for a line chart
     onMount(() => {
-        Chart.register(LineController,
-                       CategoryScale,
-                       PointElement,
-                       LineElement,
-                       LinearScale)
+        Chart.register(
+            LineController,
+            CategoryScale,
+            PointElement,
+            LineElement,
+            LinearScale
+        )
     })
 
-    const chartData = {
-        labels: ['January', 'February', 'March', 'April', 'May'],
-        datasets: [
-            {
-                label: 'Sales',
-                data: [50, 60, 70, 80, 90],
-            },
-        ],
-    }
-
-    const chartOptions = {
-        responsive: true,
-        maintainAspectRatio: false,
-    }
+    // ... your data and options objects
 
     return (
         <DefaultChart
             type="line"
-            data={chartData}
-            options={chartOptions}
+            data={data}
+            options={options}
             width={400}
             height={300}
         />
@@ -151,7 +117,6 @@ const MyChart = () => {
 Usage of `fallback` prop:
 
 ```tsx
-
 const fallback = () => {
     return (
         <div>
