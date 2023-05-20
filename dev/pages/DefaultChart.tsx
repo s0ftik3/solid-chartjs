@@ -24,9 +24,7 @@ const DefaultChartPage: Component = () => {
         'pie',
         'scatter',
     ]
-    const [chartType, setChartType] = createSignal<keyof ChartTypeRegistry>(
-        chartTypes[0],
-    )
+    const [chartType, setChartType] = createSignal<keyof ChartTypeRegistry>(chartTypes[0])
 
     const onRandomizeClick = () => {
         setChartData((prev) => generateRandomChartData(prev.datasets.length))

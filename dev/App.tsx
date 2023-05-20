@@ -8,12 +8,8 @@ import type { Component } from 'solid-js'
 type DemoPage = 'DefaultChart.tsx' | 'TypedChart.tsx' | 'Registerables.tsx'
 
 const App: Component = () => {
-    const demoPages: DemoPage[] = [
-        'DefaultChart.tsx',
-        'TypedChart.tsx',
-        'Registerables.tsx'
-    ]
-    
+    const demoPages: DemoPage[] = ['DefaultChart.tsx', 'TypedChart.tsx', 'Registerables.tsx']
+
     const [demoPage, setDemoPage] = createSignal<DemoPage>(demoPages[0])
 
     const onDemoPageSelect = (event: any) => {
@@ -23,7 +19,11 @@ const App: Component = () => {
     return (
         <>
             <div class={styles.selectContainer}>
-                <select class={styles.selectField} name="types" onChange={onDemoPageSelect} style={{ 'margin-right': '5px' }}>
+                <select
+                    class={styles.selectField}
+                    name="types"
+                    onChange={onDemoPageSelect}
+                    style={{ 'margin-right': '5px' }}>
                     <For each={demoPages}>
                         {(page) => (
                             <option value={page} selected={demoPage() === page}>
@@ -32,10 +32,20 @@ const App: Component = () => {
                         )}
                     </For>
                 </select>
-                <p>or <a class={styles.link} href={'https://github.com/s0ftik3/solid-chartjs/tree/main/dev/pages/' + demoPage()}>view source</a></p>
+                <p>
+                    or{' '}
+                    <a
+                        class={styles.link}
+                        href={
+                            'https://github.com/s0ftik3/solid-chartjs/tree/main/dev/pages/' +
+                            demoPage()
+                        }>
+                        view source
+                    </a>
+                </p>
             </div>
             <Switch>
-                <Match when={demoPage() === 'DefaultChart.tsx'} >
+                <Match when={demoPage() === 'DefaultChart.tsx'}>
                     <DefaultChartPage />
                 </Match>
                 <Match when={demoPage() === 'TypedChart.tsx'}>
@@ -45,7 +55,6 @@ const App: Component = () => {
                     <RegisterablesPage />
                 </Match>
             </Switch>
-            
         </>
     )
 }
