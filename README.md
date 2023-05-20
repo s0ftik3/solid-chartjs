@@ -1,8 +1,10 @@
 <p>
-  <img width="100%" src="https://assets.solidjs.com/banner?type=solid-chartjs&background=tiles&project=%20" alt="solid-chartjs">
+  <img width="100%" src="https://assets.solidjs.com/banner?type=solid-chartjs&background=tiles&project=LIBRARY" alt="solid-chartjs">
 </p>
 
 # solid-chartjs
+
+<img align="right" width="150" height="150" alt="Logo" src="assets/solid-chartjs-logo.png">
 
 [![version](https://badgen.net/npm/v/solid-chartjs)](https://npmjs.com/package/solid-chartjs)
 [![downloads](https://badgen.net/npm/dm/solid-chartjs)](https://www.npmjs.com/package/solid-chartjs)
@@ -17,10 +19,14 @@ The `solid-chartjs` library is a SolidJS wrapper around the [`Chart.js`](https:/
 
 ## Quick start
 
-Installation (`npm` & `yarn` are also supported):
+Installation:
 
 ```bash
 pnpm add solid-chartjs chart.js @solid-primitives/refs
+# or
+yarn add solid-chartjs chart.js @solid-primitives/refs
+# or
+npm i solid-chartjs chart.js @solid-primitives/refs
 ```
 
 Usage:
