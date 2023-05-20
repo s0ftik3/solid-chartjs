@@ -100,3 +100,21 @@ jobs:
         uses: geekyeggo/delete-artifact@v1
         with:
           name: production-files
+
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2.2.4
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: pnpm install
+      - name: Format code base
+        run: pnpm format
+      - name: Add, Commit and Push formatted code
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'refactor: Format'
