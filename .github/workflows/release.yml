@@ -90,7 +90,7 @@ jobs:
           semantic-release
 
   cleanup:
-    name: Cleanup actions
+    name: Cleanup build artifacts
     needs:
       - deploy
     runs-on: ubuntu-latest
