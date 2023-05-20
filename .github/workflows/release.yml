@@ -102,6 +102,9 @@ jobs:
           name: production-files
 
   format:
+    name: Format code
+    needs:
+      - cleanup
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
