@@ -1,0 +1,102 @@
+name: Release Library
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+    branches:
+      - main
+      - master
+      - develop
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - uses: pnpm/action-setup@v2.2.4
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        run: pnpm build
+
+      #- name: Test
+      #  run: pnpm run test
+      #  env:
+      #    CI: true
+
+      - name: Archive the build
+        uses: actions/upload-artifact@v3
+        with:
+          name: production-files
+          path: dist
+          retention-days: 5
+          if-no-files-found: error
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy
+    needs: [build]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Create Directory
+        run: mkdir -p dist
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: production-files
+          path: ./dist
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm install -g conventional-changelog-conventionalcommits
+      - run: npm install -g semantic-release@v21.0.2
+      - run: npm install -g @semantic-release/exec
+      - run: npm install -g @semantic-release/npm
+      - run: npm install -g @semantic-release/git
+      - run: npm install -g @semantic-release/release-notes-generator
+      - run: npm install -g @semantic-release/changelog
+      - run: npm install -g @semantic-release/github
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ env.GITHUB_TOKEN }}
+        run: |
+          sudo apt-get install -y jq
+          chmod +x ./scripts/prepareCMD.sh
+          semantic-release
+
+  cleanup:
+    name: Cleanup actions
+    needs:
+      - deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: "♻️ remove build artifacts"
+        uses: geekyeggo/delete-artifact@v1
+        with:
+          name: production-files

@@ -10,10 +10,15 @@
 
 The `solid-chartjs` library is a SolidJS wrapper around the [`Chart.js`](https://www.chartjs.org) library, allowing you to easily create interactive charts in your SolidJS applications.
 
--   [Quick start](#quick-start)
--   [Chart Props](#chart-props)
--   [Examples](#examples)
--   [Credits](#credits)
+- [solid-chartjs](#solid-chartjs)
+  - [Quick start](#quick-start)
+  - [Chart Props](#chart-props)
+  - [Examples](#examples)
+  - [Credits](#credits)
+  - [Contributing](#contributing)
+    - [Contribution Guidelines](#contribution-guidelines)
+  - [Code and Commit Standards](#code-and-commit-standards)
+  - [License](#license)
 
 ## Quick start
 
@@ -132,6 +137,22 @@ const fallback = () => {
 
 ## Credits
 
--   This library is _heavily_ inspired by [react-chartjs-2](https://react-chartjs-2.js.org/)
--   Awesome charting library [Chart.js](https://www.chartjs.org)
--   Flexible library for building user interfaces [SolidJs](https://www.solidjs.com/)
+- This library is _heavily_ inspired by [react-chartjs-2](https://react-chartjs-2.js.org/)
+- Awesome charting library [Chart.js](https://www.chartjs.org)
+- Flexible library for building user interfaces [SolidJs](https://www.solidjs.com/)
+
+## Contributing
+
+### Contribution Guidelines
+
+Please read our [Contribution Guidelines](/docs/CONTRIBUTION.md) before you contribute.
+
+## Code and Commit Standards
+
+Please read and follow the [standards for this repo](/docs/STANDARDS.md)
+
+These standards are laid out to ensure that the code base is as maintainable as possible.
+
+## License
+
+[MIT](/LICENSE)
