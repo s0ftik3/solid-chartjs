@@ -29,6 +29,6 @@
         "[typescriptreact]": {
             "editor.defaultFormatter": "esbenp.prettier-vscode"
         },
-        "cSpell.words": ["minifaker", "registerables"]
+        "cSpell.words": ["minifaker", "registerables", "Triaging"]
     }
 }
