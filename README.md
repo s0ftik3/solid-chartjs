@@ -12,15 +12,14 @@
 
 The `solid-chartjs` library is a SolidJS wrapper around the [`Chart.js`](https://www.chartjs.org) library, allowing you to easily create interactive charts in your SolidJS applications.
 
-- [solid-chartjs](#solid-chartjs)
-  - [Quick start](#quick-start)
-  - [Chart Props](#chart-props)
-  - [Examples](#examples)
-  - [Credits](#credits)
-  - [Contributing](#contributing)
-    - [Contribution Guidelines](#contribution-guidelines)
-  - [Code and Commit Standards](#code-and-commit-standards)
-  - [License](#license)
+-   [Quick start](#quick-start)
+-   [Chart Props](#chart-props)
+-   [Examples](#examples)
+-   [Credits](#credits)
+-   [Contributing](#contributing)
+    -   [Contribution Guidelines](#contribution-guidelines)
+-   [Code and Commit Standards](#code-and-commit-standards)
+-   [License](#license)
 
 ## Quick start
 
@@ -143,9 +142,9 @@ const fallback = () => {
 
 ## Credits
 
-- This library is _heavily_ inspired by [react-chartjs-2](https://react-chartjs-2.js.org/)
-- Awesome charting library [Chart.js](https://www.chartjs.org)
-- Flexible library for building user interfaces [SolidJs](https://www.solidjs.com/)
+-   This library is _heavily_ inspired by [react-chartjs-2](https://react-chartjs-2.js.org/)
+-   Awesome charting library [Chart.js](https://www.chartjs.org)
+-   Flexible library for building user interfaces [SolidJs](https://www.solidjs.com/)
 
 ## Contributing
 
