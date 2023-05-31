@@ -5,9 +5,9 @@ import { createEffect, mergeProps, on, onCleanup, onMount, createSignal } from '
 import { unwrap } from 'solid-js/store'
 import { ChartProps } from './types'
 
+export const [chart, setChart] = createSignal<Chart>()
 export default function DefaultChart(props: ChartProps) {
     const [canvasRef, setCanvasRef] = createSignal<HTMLCanvasElement | null>()
-    const [chart, setChart] = createSignal<Chart>()
 
     const merged = mergeProps(
         {

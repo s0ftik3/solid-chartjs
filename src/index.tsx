@@ -1,4 +1,4 @@
-import DefaultChart from './chart'
+import DefaultChart, { chart, setChart } from './chart'
 export type { ChartProps } from './types.js'
-export { DefaultChart }
+export { DefaultChart, chart, setChart }
 export * from './typedCharts'
