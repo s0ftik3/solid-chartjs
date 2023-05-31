@@ -3,6 +3,18 @@
 [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 > All notable changes to this project will be documented in this file
 
+## [1.0.0-develop.2](https://github.com/s0ftik3/solid-chartjs/compare/v1.0.0-develop.1...v1.0.0-develop.2) (2023-05-31)
+
+
+### 📝 Documentation
+
+* fix ([2ea002f](https://github.com/s0ftik3/solid-chartjs/commit/2ea002fe87c7ed5999deb500bc501d7edc0cd5f7))
+
+
+### 🍕 Features
+
+* expose chart and setChart signals ([b2421f6](https://github.com/s0ftik3/solid-chartjs/commit/b2421f6301d06769389b0d536356b2a6cefc15b6))
+
 ## 1.0.0-develop.1 (2023-05-22)
 
 
