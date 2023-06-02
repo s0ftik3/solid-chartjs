@@ -44,7 +44,10 @@ export const Doughnut = /* #__PURE__ */ createTypedChart('doughnut', [
     DoughnutController,
     ArcElement,
 ])
-export const PolarArea = /* #__PURE__ */ createTypedChart('polarArea', PolarAreaController)
+export const PolarArea = /* #__PURE__ */ createTypedChart('polarArea', [
+    PolarAreaController,
+    RadialLinearScale,
+])
 export const Bubble = /* #__PURE__ */ createTypedChart('bubble', BubbleController)
 export const Pie = /* #__PURE__ */ createTypedChart('pie', PieController)
 export const Scatter = /* #__PURE__ */ createTypedChart('scatter', ScatterController)

@@ -1,3 +1,11 @@
 {
-    "cSpell.words": ["chartjs", "minifaker", "solidjs", "Triaging", "tsup", "typecheck"]
+    "cSpell.words": [
+        "chartjs",
+        "minifaker",
+        "registerables",
+        "solidjs",
+        "Triaging",
+        "tsup",
+        "typecheck"
+    ]
 }
