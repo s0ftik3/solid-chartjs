@@ -3,6 +3,13 @@
 [![semantic versioning](https://img.shields.io/badge/semantic%20versioning-2.0.0-green.svg)](https://semver.org)
 > All notable changes to this project will be documented in this file
 
+## [1.0.0-develop.3](https://github.com/s0ftik3/solid-chartjs/compare/v1.0.0-develop.2...v1.0.0-develop.3) (2023-06-02)
+
+
+### 🐛 Bug Fixes
+
+* PolarArea not including RadialLinearScale ([b5b2a2b](https://github.com/s0ftik3/solid-chartjs/commit/b5b2a2b5a879f503f76844f159e5cf03a4012ae9))
+
 ## [1.0.0-develop.2](https://github.com/s0ftik3/solid-chartjs/compare/v1.0.0-develop.1...v1.0.0-develop.2) (2023-05-31)
 
 

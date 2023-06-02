@@ -1,7 +1,7 @@
 {
   "name": "solid-chartjs",
   "type": "module",
-  "version": "1.0.0-develop.2",
+  "version": "1.0.0-develop.3",
   "description": "SolidJS components for Chart.js",
   "license": "MIT",
   "repository": {
