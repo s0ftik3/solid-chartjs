@@ -58,6 +58,23 @@ export default function DefaultChart(props: ChartProps) {
             },
         ),
     )
+    /*--- Could be great, that the chart update if any config changes, like: default options.scales.y.min = 10, then you consume an API
+    so the min would be changed to options.scales.y.min = 0, and also the "min" (or another config that you wanted be dynamic) will be 
+    changed everytime you consume the API and you only want update the chart---*/
+    createEffect(
+        on(
+            () => merged.options,
+            () => {
+                chart()!.data = merged.options
+                chart()!.update()
+            },
+            {
+                defer: true,
+            },
+        ),
+    )
+
+    /*--- I don't know if this is the best action, but could be awesome, I want that several options will be dynamic */
 
     createEffect(
         on(
