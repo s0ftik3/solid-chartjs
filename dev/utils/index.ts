@@ -1,9 +1,8 @@
 import { ChartData, ChartDataset } from 'chart.js'
-import { number } from 'minifaker'
 
 export const generateRandomDataset = (labels: string[], index: number) => ({
     label: 'Dataset ' + index,
-    data: labels.map(() => number({ min: -100, max: 100 })),
+    data: labels.map(() => Math.random() * 200 - 100),
 })
 
 export const generateRandomChartData = (datasetsLength = 2): ChartData => {

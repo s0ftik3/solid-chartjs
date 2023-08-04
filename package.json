@@ -118,9 +118,6 @@
     "vitest": "^0.31.0",
     "vitest-canvas-mock": "^0.2.2"
   },
-  "dependencies": {
-    "minifaker": "^1.34.1"
-  },
   "keywords": [
     "solid",
     "solidjs",
