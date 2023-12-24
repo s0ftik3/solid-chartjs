@@ -73,7 +73,8 @@ const MyChart = () => {
 
 If you don't want to import and register the controllers, elements, scales, and plugins you want to use, you can use the following solution:
 
-> **Note**: it is considered to better use the tree-shakable way to decrease the bundle size.
+> [!NOTE]\
+> It is considered to better use the tree-shakable way, to decrease the bundle size.
 
 ```tsx
 import 'chart.js/auto'
@@ -100,7 +101,8 @@ Check out `/dev` folder and run the SolidJs application to see how it works.
 
 You can also use the `DefaultChart` components:
 
-> **Note**: `DefaultChart` is a wrapper around `Chart` component, so you can use all the props from `Chart` component.
+> [!NOTE]\
+> `DefaultChart` is a wrapper around `Chart` component, so you can use all the props from `Chart` component.
 > `DefaultChart` component does _not_ have its registrable elements registered by default, so you need to register them yourself unless you use `chart.js/auto`.
 
 ```tsx
