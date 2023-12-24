@@ -61,6 +61,19 @@ export default function DefaultChart(props: ChartProps) {
 
     createEffect(
         on(
+            () => merged.options,
+            () => {
+                chart()!.options = merged.options
+                chart()!.update()
+            },
+            {
+                defer: true,
+            },
+        ),
+    )
+
+    createEffect(
+        on(
             [() => merged.width, () => merged.height],
             () => {
                 chart()!.resize(merged.width, merged.height)
