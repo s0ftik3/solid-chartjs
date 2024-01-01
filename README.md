@@ -33,6 +33,8 @@ yarn add solid-chartjs chart.js @solid-primitives/refs
 npm i solid-chartjs chart.js @solid-primitives/refs
 ```
 
+Demo: [solid-chartjs.vychs.com](https://solid-chartjs.vychs.com/)
+
 Usage:
 
 ```tsx
