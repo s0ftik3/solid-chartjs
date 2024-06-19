@@ -67,7 +67,6 @@
     "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@solid-primitives/refs": "^1.0.3",
     "chart.js": "^4.3.0",
     "solid-js": "^1.7.5"
   },

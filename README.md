@@ -26,11 +26,11 @@ The `solid-chartjs` library is a SolidJS wrapper around the [`Chart.js`](https:/
 Installation:
 
 ```bash
-pnpm add solid-chartjs chart.js @solid-primitives/refs
+pnpm add solid-chartjs chart.js
 # or
-yarn add solid-chartjs chart.js @solid-primitives/refs
+yarn add solid-chartjs chart.js
 # or
-npm i solid-chartjs chart.js @solid-primitives/refs
+npm i solid-chartjs chart.js
 ```
 
 Demo: [solid-chartjs.vychs.com](https://solid-chartjs.vychs.com/)
@@ -149,19 +149,3 @@ const fallback = () => {
 -   This library is _heavily_ inspired by [react-chartjs-2](https://react-chartjs-2.js.org/)
 -   Awesome charting library [Chart.js](https://www.chartjs.org)
 -   Flexible library for building user interfaces [SolidJs](https://www.solidjs.com/)
-
-## Contributing
-
-### Contribution Guidelines
-
-Please read our [Contribution Guidelines](/docs/CONTRIBUTION.md) before you contribute.
-
-## Code and Commit Standards
-
-Please read and follow the [standards for this repo](/docs/STANDARDS.md)
-
-These standards are laid out to ensure that the code base is as maintainable as possible.
-
-## License
-
-[MIT](/LICENSE)
