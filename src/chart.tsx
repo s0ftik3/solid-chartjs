@@ -43,7 +43,9 @@ export default function DefaultChart(props: ChartProps) {
     }
 
     onMount(() => {
-        init()
+        requestAnimationFrame(() => {
+            init()
+        })
     })
 
     createEffect(
