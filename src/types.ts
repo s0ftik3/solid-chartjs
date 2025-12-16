@@ -1,6 +1,6 @@
 import type { Ref } from '@solid-primitives/refs'
 import type { ChartData, ChartOptions, Plugin, ChartTypeRegistry } from 'chart.js'
-import type { JSXElement } from 'solid-js'
+import type { JSXElement, JSX } from 'solid-js'
 
 /**
  * Chart props
@@ -52,4 +52,14 @@ export interface ChartProps {
      * @default null
      */
     ref?: Ref<HTMLCanvasElement | null>
+    /**
+     * Extra attributes to be forwarded directly to the canvas
+     *
+     * For example for setting the `id`, `role`, or `aria-label`.
+     *
+     * This can be used for any attribute except `width` and `height`,
+     * which can be set directly.
+     * @default {}
+     */
+    extraCanvasAttributes?: Omit<JSX.CanvasHTMLAttributes<HTMLCanvasElement>, 'width' | 'height'>
 }
